@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button.jsx'
 import { Input } from '@/components/ui/input.jsx'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select.jsx'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card.jsx'
 import { Badge } from '@/components/ui/badge.jsx'
 import { Alert, AlertDescription } from '@/components/ui/alert.jsx'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs.jsx'
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog.jsx'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion.jsx'
-import { AlertTriangle, Calculator, Info, X, ZoomIn, Pill, Flame, Shield, Clock, Users, CheckCircle } from 'lucide-react'
+import { AlertTriangle, Calculator, Info, X, ZoomIn, Pill, Flame, Shield, Clock, Users, CheckCircle, Linkedin } from 'lucide-react'
 import { LanguageToggle } from './components/LanguageToggle.jsx'
+import linkedinLogo from './assets/linkedin-logo.png'
 import './App.css'
 
 // Import medication images
@@ -124,8 +126,8 @@ const medications = {
       ageRestriction: 'Age over 6 months'
     },
     {
-      id: 'brufen',
-      name: 'Brufen',
+      id: 'prof',
+      name: 'Prof',
       ingredient: 'Ibuprofen',
       concentration: 100, // mg per 5ml
       volume: 5, // ml
@@ -168,81 +170,86 @@ const medications = {
 
 const suppositories = {
   paracetamol: [
+    // 100mg suppositories
     {
       id: 'fevadol_100_supp',
       name: 'Fevadol 100',
       ingredient: 'Paracetamol',
-      concentration: 100, // mg per suppository
+      concentration: 100,
       form: 'suppository',
       image: fevadol100SuppImg,
       ageRestriction: '6-12.9',
       weightRange: '6-12.9 kg'
     },
     {
+      id: 'tylenol_100_supp',
+      name: 'Tylenol 100',
+      ingredient: 'Paracetamol',
+      concentration: 100,
+      form: 'suppository',
+      image: tylenol100SuppImg,
+      ageRestriction: '6-12.9',
+      weightRange: '6-12.9 kg'
+    },
+    // 125mg suppositories
+    {
+      id: 'adol_125_supp',
+      name: 'Adol 125',
+      ingredient: 'Paracetamol',
+      concentration: 125,
+      form: 'suppository',
+      image: adol125SuppImg,
+      ageRestriction: '6-12.9',
+      weightRange: '6-12.9 kg'
+    },
+    // 200mg suppositories
+    {
       id: 'fevadol_200_supp',
       name: 'Fevadol 200',
       ingredient: 'Paracetamol',
-      concentration: 200, // mg per suppository
+      concentration: 200,
       form: 'suppository',
       image: fevadol200SuppImg,
       ageRestriction: '13-22',
       weightRange: '13-22 kg'
     },
     {
+      id: 'tylenol_200_supp',
+      name: 'Tylenol 200',
+      ingredient: 'Paracetamol',
+      concentration: 200,
+      form: 'suppository',
+      image: tylenol200SuppImg,
+      ageRestriction: '13-22',
+      weightRange: '13-22 kg'
+    },
+    // 250mg suppositories
+    {
+      id: 'adol_250_supp',
+      name: 'Adol 250',
+      ingredient: 'Paracetamol',
+      concentration: 250,
+      form: 'suppository',
+      image: adol250SuppImg,
+      ageRestriction: '13-22',
+      weightRange: '13-22 kg'
+    },
+    // 350mg suppositories
+    {
       id: 'fevadol_350_supp',
       name: 'Fevadol 350',
       ingredient: 'Paracetamol',
-      concentration: 350, // mg per suppository
+      concentration: 350,
       form: 'suppository',
       image: fevadol350SuppImg,
       ageRestriction: '23-35',
       weightRange: '23-35 kg'
     },
     {
-      id: 'adol_125_supp',
-      name: 'Adol 125',
-      ingredient: 'Paracetamol',
-      concentration: 125, // mg per suppository
-      form: 'suppository',
-      image: adol125SuppImg,
-      ageRestriction: '6-12.9',
-      weightRange: '6-12.9 kg'
-    },
-    {
-      id: 'adol_250_supp',
-      name: 'Adol 250',
-      ingredient: 'Paracetamol',
-      concentration: 250, // mg per suppository
-      form: 'suppository',
-      image: adol250SuppImg,
-      ageRestriction: '13-22',
-      weightRange: '13-22 kg'
-    },
-    {
-      id: 'tylenol_100_supp',
-      name: 'Tylenol 100',
-      ingredient: 'Paracetamol',
-      concentration: 100, // mg per suppository
-      form: 'suppository',
-      image: tylenol100SuppImg,
-      ageRestriction: '6-12.9',
-      weightRange: '6-12.9 kg'
-    },
-    {
-      id: 'tylenol_200_supp',
-      name: 'Tylenol 200',
-      ingredient: 'Paracetamol',
-      concentration: 200, // mg per suppository
-      form: 'suppository',
-      image: tylenol200SuppImg,
-      ageRestriction: '13-22',
-      weightRange: '13-22 kg'
-    },
-    {
       id: 'tylenol_350_supp',
       name: 'Tylenol 350',
       ingredient: 'Paracetamol',
-      concentration: 350, // mg per suppository
+      concentration: 350,
       form: 'suppository',
       image: tylenol350SuppImg,
       ageRestriction: '23-35',
@@ -250,41 +257,43 @@ const suppositories = {
     }
   ],
   diclofenac: [
+    // 12.5mg suppositories
     {
       id: 'rofenac_12_5_supp',
       name: 'Rofenac 12.5',
       ingredient: 'Diclofenac',
-      concentration: 12.5, // mg per suppository
+      concentration: 12.5,
       form: 'suppository',
       image: rofenac12_5SuppImg,
       ageRestriction: '8-16',
       weightRange: '8-16 kg'
     },
     {
+      id: 'voltaren_12_5_supp',
+      name: 'Voltaren 12.5',
+      ingredient: 'Diclofenac',
+      concentration: 12.5,
+      form: 'suppository',
+      image: voltaren12_5SuppImg,
+      ageRestriction: '8-16',
+      weightRange: '8-16 kg'
+    },
+    // 25mg suppositories
+    {
       id: 'rofenac_25_supp',
       name: 'Rofenac 25',
       ingredient: 'Diclofenac',
-      concentration: 25, // mg per suppository
+      concentration: 25,
       form: 'suppository',
       image: rofenac25SuppImg,
       ageRestriction: '17-25',
       weightRange: '17-25 kg'
     },
     {
-      id: 'voltaren_12_5_supp',
-      name: 'Voltaren 12.5',
-      ingredient: 'Diclofenac',
-      concentration: 12.5, // mg per suppository
-      form: 'suppository',
-      image: voltaren12_5SuppImg,
-      ageRestriction: '8-16',
-      weightRange: '8-16 kg'
-    },
-    {
       id: 'voltaren_25_supp',
       name: 'Voltaren 25',
       ingredient: 'Diclofenac',
-      concentration: 25, // mg per suppository
+      concentration: 25,
       form: 'suppository',
       image: voltaren25SuppImg,
       ageRestriction: '17-25',
@@ -297,6 +306,7 @@ function AppEnglish({ onChangeLanguage }) {
   const [weight, setWeight] = useState('') // String for text input
   const [age, setAge] = useState('') // String for text input
   const [ageUnit, setAgeUnit] = useState('') // 'months' or 'years' - empty by default
+  const [ageCategory, setAgeCategory] = useState('') // 'infant' (under 1) or 'child' (1+)
   const [selectedMedication, setSelectedMedication] = useState(null)
   const [result, setResult] = useState(null)
   const [activeTab, setActiveTab] = useState('calculator')
@@ -490,14 +500,105 @@ function AppEnglish({ onChangeLanguage }) {
     })
   }
 
-  const MedicationCard = ({ medication, category }) => (
+  const MedicationCard = ({ medication, category }) => {
+    // Check if medication is Ibuprofen and age is under 6 months
+    const isIbuprofen = medication.ingredient === 'Ibuprofen'
+    const ageInMonths = ageUnit === 'years' ? parseFloat(age) * 12 : parseFloat(age)
+    const isUnder6Months = age && ageUnit && ageInMonths < 6
+    
+    // Check if medication is Adol Drops and age is 2 years or above
+    const isAdolDrops = medication.id === 'adol_drops'
+    const is2YearsOrAbove = age && ageUnit === 'years' && parseFloat(age) >= 2
+    
+    // Check if suppository is suitable for current age/weight
+    let isSuppositoryUnsuitable = false
+    let unsuitabilityReason = ''
+    
+    if (medication.form === 'suppository' && age && ageUnit && weight) {
+      const weightNum = parseFloat(weight)
+      
+      if (medication.ingredient === 'Paracetamol') {
+        const weightRange = medication.weightRange
+        if (weightRange) {
+          const weightMatch = weightRange.match(/(\d+(?:\.\d+)?)-(\d+(?:\.\d+)?)/)
+          if (weightMatch) {
+            const minWeight = parseFloat(weightMatch[1])
+            const maxWeight = parseFloat(weightMatch[2])
+            if (weightNum < minWeight || weightNum > maxWeight) {
+              isSuppositoryUnsuitable = true
+              unsuitabilityReason = `Suitable for weight ${weightRange} kg`
+            }
+          }
+        }
+      }
+      
+      if (medication.ingredient === 'Diclofenac') {
+        if (ageInMonths < 12) {
+          isSuppositoryUnsuitable = true
+          unsuitabilityReason = 'Suitable for children over 1 year old'
+        } else {
+          if (weightNum >= 8 && weightNum <= 16) {
+            if (medication.concentration !== 12.5) {
+              isSuppositoryUnsuitable = true
+              // Show the range for THIS medication (25mg), not the unsuitable one
+              unsuitabilityReason = 'Suitable for weight 17-25 kg'
+            }
+          } else if (weightNum >= 17 && weightNum <= 25) {
+            if (medication.concentration !== 25) {
+              isSuppositoryUnsuitable = true
+              // Show the range for THIS medication (12.5mg), not the unsuitable one
+              unsuitabilityReason = 'Suitable for weight 8-16 kg'
+            }
+          } else {
+            isSuppositoryUnsuitable = true
+            // Show specific range based on concentration
+            if (medication.concentration === 12.5) {
+              unsuitabilityReason = 'Suitable for weight 8-16 kg'
+            } else if (medication.concentration === 25) {
+              unsuitabilityReason = 'Suitable for weight 17-25 kg'
+            } else {
+              unsuitabilityReason = 'Suitable for weight 8-25 kg'
+            }
+          }
+        }
+      }
+    }
+    
+    const isDisabled = (isIbuprofen && isUnder6Months) || isSuppositoryUnsuitable || (isAdolDrops && is2YearsOrAbove)
+
+    const handleClick = () => {
+      // Check if age and weight are entered
+      if (!age || !ageUnit || !weight) {
+        alert('⚠️ Please enter age and weight first')
+        return
+      }
+      
+      if (isSuppositoryUnsuitable) {
+        alert(`⚠️ Warning: This suppository is not suitable for your child\n${unsuitabilityReason}`)
+        return
+      }
+      
+      if (isIbuprofen && isUnder6Months) {
+        alert('⚠️ Warning: Ibuprofen medications are suitable for children 6 months and older only')
+        return
+      }
+      
+      if (isAdolDrops && is2YearsOrAbove) {
+        alert('⚠️ Warning: Adol Drops are suitable for children under 2 years old only')
+        return
+      }
+      setSelectedMedication(medication)
+    }
+
+    return (
     <Card 
       className={`cursor-pointer transition-all duration-200 hover:shadow-lg ${
         selectedMedication?.id === medication.id 
           ? 'ring-2 ring-blue-500 bg-blue-50' 
           : 'hover:bg-gray-50'
       }`}
-      onClick={() => setSelectedMedication(medication)}
+      onClick={handleClick}
+      style={isDisabled ? { opacity: 0.5, cursor: 'not-allowed' } : {}}
     >
       <CardContent className="p-4">
         <div className="flex items-center gap-4">
@@ -551,6 +652,21 @@ function AppEnglish({ onChangeLanguage }) {
                 {medication.ageRestriction}
               </p>
             )}
+            {(isIbuprofen && isUnder6Months) && (
+              <p className="text-xs text-red-600 font-bold mt-1 bg-red-50 px-2 py-1 rounded">
+                ⚠️ For 6 months and older
+              </p>
+            )}
+            {(isAdolDrops && is2YearsOrAbove) && (
+              <p className="text-xs text-red-600 font-bold mt-1 bg-red-50 px-2 py-1 rounded">
+                ⚠️ For children under 2 years
+              </p>
+            )}
+            {isSuppositoryUnsuitable && (
+              <p className="text-xs text-red-600 font-bold mt-1 bg-red-50 px-2 py-1 rounded">
+                ⚠️ {unsuitabilityReason}
+              </p>
+            )}
           </div>
           <div className="flex flex-col items-center gap-2">
             <div className="flex items-center justify-center w-6 h-6 rounded-full border-2 border-gray-300">
@@ -570,26 +686,11 @@ function AppEnglish({ onChangeLanguage }) {
                 setTimeout(() => {
                   const resultsSection = document.getElementById('results-section')
                   if (resultsSection) {
-                    // Smart scroll calculation to show results + footer together
-                    const footer = document.querySelector('footer')
-                    const viewportHeight = window.innerHeight
-                    const resultsHeight = resultsSection.offsetHeight
-                    const footerHeight = footer ? footer.offsetHeight : 0
-                    
-                    // Calculate optimal scroll position
-                    // Position results at top, but ensure footer is visible at bottom
+                    // Simple scroll: position results just below sticky header with some padding
+                    const stickyHeaderHeight = 88
                     const resultsTop = resultsSection.getBoundingClientRect().top + window.pageYOffset
-                    const totalContentHeight = resultsHeight + footerHeight
-                    
-                    let targetPosition
-                    if (totalContentHeight > viewportHeight) {
-                      // Content is taller than viewport - scroll to show results top
-                      // But adjust upward to try to show footer
-                      targetPosition = resultsTop - (viewportHeight - totalContentHeight) / 2
-                    } else {
-                      // Content fits in viewport - center it
-                      targetPosition = resultsTop - (viewportHeight - totalContentHeight) / 2
-                    }
+                    // Reduced offset to make scroll go further down (match Arabic version)
+                    const targetPosition = resultsTop - stickyHeaderHeight + 30
                     const startPosition = window.pageYOffset
                     const distance = targetPosition - startPosition
                     const duration = 3000 // 3 seconds for optimal slow, smooth scroll
@@ -627,12 +728,13 @@ function AppEnglish({ onChangeLanguage }) {
       </CardContent>
     </Card>
   )
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       <LanguageToggle currentLanguage="en" onToggle={onChangeLanguage} />
       {/* Top Brand Header */}
-      <div className="bg-white text-gray-800 py-6 shadow-lg border-b-2 border-gray-100">
+      <div className="sticky top-0 bg-white text-gray-800 py-6 shadow-lg border-b-2 border-gray-100 z-40">
         <div className="max-w-4xl mx-auto px-4">
           <div className="flex items-center justify-center gap-4">
             {/* Icon Container */}
@@ -695,61 +797,123 @@ function AppEnglish({ onChangeLanguage }) {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
+                <div className="space-y-4">
+                  {/* Step 1: Age Category Selection */}
+                  <div className="space-y-3">
                     <label className="text-sm font-medium flex items-center gap-1">
-                      Child's Age 
+                      How old is your child?
                       <span className="text-red-500 text-xs">*</span>
                     </label>
-                    <div className="space-y-3">
-                      <Input
-                        type="text"
-                        placeholder=""
-                        value={age}
-                        onChange={(e) => setAge(e.target.value)}
-                        className="text-lg"
-                        dir="ltr"
-                      />
-                      <div className="border-2 border-red-300 rounded-lg p-3 bg-red-50">
-                        <p className="text-sm font-medium text-red-700 mb-2">Select unit (required):</p>
-                        <div className="flex gap-4">
-                          <label className="flex items-center gap-2 cursor-pointer">
-                            <input
-                              type="radio"
-                              name="ageUnit"
-                              value="months"
-                              checked={ageUnit === 'months'}
-                              onChange={(e) => setAgeUnit(e.target.value)}
-                              className="w-4 h-4 text-red-600 border-red-300 focus:ring-red-500"
-                            />
-                            <span className="text-sm font-medium">Months</span>
-                          </label>
-                          <label className="flex items-center gap-2 cursor-pointer">
-                            <input
-                              type="radio"
-                              name="ageUnit"
-                              value="years"
-                              checked={ageUnit === 'years'}
-                              onChange={(e) => setAgeUnit(e.target.value)}
-                              className="w-4 h-4 text-red-600 border-red-300 focus:ring-red-500"
-                            />
-                            <span className="text-sm font-medium">Years</span>
-                          </label>
+                    <div className="grid grid-cols-2 gap-3">
+                      <Button
+                        type="button"
+                        variant={ageCategory === 'infant' ? 'default' : 'outline'}
+                        className="h-20 text-base"
+                        onClick={() => {
+                          setAgeCategory('infant')
+                          setAgeUnit('months')
+                          setAge('')
+                        }}
+                      >
+                        <div className="text-center">
+                          <div className="text-2xl mb-1">👶</div>
+                          <div>Less than 1 year</div>
+                          <div className="text-xs opacity-70">(1-12 months)</div>
                         </div>
-                      </div>
+                      </Button>
+                      <Button
+                        type="button"
+                        variant={ageCategory === 'child' ? 'default' : 'outline'}
+                        className="h-20 text-base"
+                        onClick={() => {
+                          setAgeCategory('child')
+                          setAgeUnit('years')
+                          setAge('')
+                        }}
+                      >
+                        <div className="text-center">
+                          <div className="text-2xl mb-1">🧒</div>
+                          <div>More than 1 year</div>
+                          <div className="text-xs opacity-70">(1-14 years)</div>
+                        </div>
+                      </Button>
                     </div>
                   </div>
-                  <div className="space-y-2">
-                    <label className="text-sm font-medium">Child's Weight (kg)</label>
-                    <Input
-                      type="text"
-                      placeholder=""
-                      value={weight}
-                      onChange={(e) => setWeight(e.target.value)}
-                      className="text-lg"
-                      dir="ltr"
-                    />
-                  </div>
+
+                  {/* Step 2: Specific Age Selection */}
+                  {ageCategory && (
+                    <div className="space-y-2 animate-in slide-in-from-top-2 duration-300">
+                      <label className="text-sm font-medium">
+                        {ageCategory === 'infant' ? 'Select age in months' : 'Select age in years'}
+                      </label>
+                      <Select value={age} onValueChange={setAge}>
+                        <SelectTrigger className="text-lg">
+                          <SelectValue placeholder={ageCategory === 'infant' ? 'Select months' : 'Select years'} />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {ageCategory === 'infant' ? (
+                            // 1-12 months
+                            Array.from({ length: 12 }, (_, i) => i + 1).map(month => (
+                              <SelectItem key={month} value={month.toString()}>
+                                {month} {month === 1 ? 'month' : 'months'}
+                              </SelectItem>
+                            ))
+                          ) : (
+                            // 1-14 years
+                            Array.from({ length: 14 }, (_, i) => i + 1).map(year => (
+                              <SelectItem key={year} value={year.toString()}>
+                                {year} {year === 1 ? 'year' : 'years'}
+                              </SelectItem>
+                            ))
+                          )}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  )}
+
+                  {/* Step 3: Weight Selection */}
+                  {age && (
+                    <div className="space-y-2 animate-in slide-in-from-top-2 duration-300">
+                      <label className="text-sm font-medium">Child's Weight (kg)</label>
+                      <Select value={weight} onValueChange={setWeight}>
+                        <SelectTrigger className="text-lg">
+                          <SelectValue placeholder="Select weight" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {ageCategory === 'infant' ? (
+                            // Infant (< 1 year): 3-16 kg, every 0.5 kg
+                            Array.from({ length: 27 }, (_, i) => 3 + (i * 0.5)).map(w => (
+                              <SelectItem key={w} value={w.toString()}>
+                                {w} kg
+                              </SelectItem>
+                            ))
+                          ) : (
+                            // Child (> 1 year): 6-60 kg
+                            <>
+                              {/* 6-15 kg: Every 0.5 kg */}
+                              {Array.from({ length: 19 }, (_, i) => 6 + (i * 0.5)).map(w => (
+                                <SelectItem key={w} value={w.toString()}>
+                                  {w} kg
+                                </SelectItem>
+                              ))}
+                              {/* 16-30 kg: Every 1 kg */}
+                              {Array.from({ length: 15 }, (_, i) => i + 16).map(w => (
+                                <SelectItem key={w} value={w.toString()}>
+                                  {w} kg
+                                </SelectItem>
+                              ))}
+                              {/* 31-60 kg: Every 1 kg */}
+                              {Array.from({ length: 30 }, (_, i) => 31 + i).map(w => (
+                                <SelectItem key={w} value={w.toString()}>
+                                  {w} kg
+                                </SelectItem>
+                              ))}
+                            </>
+                          )}
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  )}
                 </div>
               </CardContent>
             </Card>
@@ -835,92 +999,45 @@ function AppEnglish({ onChangeLanguage }) {
 
               {medicationType === 'suppository' && (
                 <>
-                  {/* Show appropriate suppositories based on age and weight */}
-                  {age && weight ? (
-                    (() => {
-                      // Convert Arabic numerals to English
-                      const ageStr = convertArabicToEnglish(age.toString())
-                      const weightStr = convertArabicToEnglish(weight.toString())
-                      
-                      const ageNum = parseFloat(ageStr)
-                      const weightNum = parseFloat(weightStr)
-                      
-                      if (isNaN(ageNum) || isNaN(weightNum)) {
-                        return (
-                          <div className="text-center py-8">
-                            <p className="text-gray-600 text-lg">
-                              Please enter valid age and weight to display appropriate suppositories
-                            </p>
-                          </div>
-                        )
-                      }
-                      
-                      const ageInMonths = ageUnit === 'years' ? ageNum * 12 : ageNum
-                      const appropriateSupps = getAppropriateSuppositoriesForAge(ageInMonths, weightNum)
-                      
-                      if (appropriateSupps.length === 0) {
-                        return (
-                          <div className="text-center py-8">
-                            <p className="text-gray-600 text-lg">
-                              No appropriate suppositories for this age and weight. Please consult a doctor.
-                            </p>
-                          </div>
-                        )
-                      }
-                      
-                      const paracetamolSupps = appropriateSupps.filter(med => med.ingredient === 'Paracetamol')
-                      const diclofenacSupps = appropriateSupps.filter(med => med.ingredient === 'Diclofenac')
-                      
-                      return (
-                        <>
-                          {paracetamolSupps.length > 0 && (
-                            <div>
-                              <div className="flex items-center gap-2 mb-4">
-                                <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
-                                <h3 className="text-lg font-semibold text-blue-700">Appropriate Paracetamol Suppositories</h3>
-                              </div>
-                              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                                {paracetamolSupps.map(med => (
-                                  <MedicationCard key={med.id} medication={med} category="paracetamol_supp" />
-                                ))}
-                              </div>
-                            </div>
-                          )}
-                          
-                          {diclofenacSupps.length > 0 && (
-                            <div>
-                              <div className="flex items-center gap-2 mb-2">
-                                <div className="w-4 h-4 bg-green-500 rounded-full"></div>
-                                <h3 className="text-lg font-semibold text-green-700">Appropriate Diclofenac Suppositories</h3>
-                              </div>
-                              
-                              {/* Additional Information */}
-                              <div className="mb-4 p-3 bg-green-50 border border-green-200 rounded-lg">
-                                <p className="text-sm text-green-800 leading-relaxed">
-                                  For fever or pain that doesn't respond to paracetamol, your doctor may recommend a stronger fever reducer or pain reliever such as diclofenac suppositories
-                                </p>
-                                <p className="text-sm text-green-700 font-medium mt-2">
-                                  <strong>Note:</strong> Diclofenac suppositories do not interact with paracetamol, but they belong to the same family as ibuprofen syrup; they should not be taken at the same time and 8 hours should be left between them
-                                </p>
-                              </div>
-                              
-                              <div className="grid gap-4 md:grid-cols-2">
-                                {diclofenacSupps.map(med => (
-                                  <MedicationCard key={med.id} medication={med} category="diclofenac_supp" />
-                                ))}
-                              </div>
-                            </div>
-                          )}
-                        </>
-                      )
-                    })()
-                  ) : (
-                    <div className="text-center py-8">
-                      <p className="text-gray-600 text-lg">
-                        Please enter child's age and weight to display appropriate suppositories
+                  {/* Paracetamol Suppositories Section - Show ALL */}
+                  <div>
+                    <div className="flex items-center gap-2 mb-4">
+                      <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
+                      <h3 className="text-lg font-semibold text-blue-700">Paracetamol Suppositories</h3>
+                    </div>
+                    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                      {suppositories.paracetamol.map(med => (
+                        <MedicationCard key={med.id} medication={med} category="paracetamol_supp" />
+                      ))}
+                    </div>
+                  </div>
+                  
+                  {/* Diclofenac Suppositories Section - Show ALL */}
+                  <div>
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className="w-4 h-4 bg-green-500 rounded-full"></div>
+                      <h3 className="text-lg font-semibold text-green-700">Diclofenac Suppositories</h3>
+                      <Badge variant="outline" className="text-green-600">
+                        For children over 1 year
+                      </Badge>
+                    </div>
+                    
+                    {/* Additional Information */}
+                    <div className="mb-4 p-3 bg-green-50 border border-green-200 rounded-lg">
+                      <p className="text-sm text-green-800 leading-relaxed">
+                        For fever or pain that doesn't respond to paracetamol, your doctor may recommend a stronger fever reducer or pain reliever such as diclofenac suppositories
+                      </p>
+                      <p className="text-sm text-green-700 font-medium mt-2">
+                        <strong>Note:</strong> Diclofenac suppositories do not interact with paracetamol, but they belong to the same family as ibuprofen syrup. Do not take them at the same time and leave 8 hours between them
                       </p>
                     </div>
-                  )}
+                    
+                    <div className="grid gap-4 md:grid-cols-2">
+                      {suppositories.diclofenac.map(med => (
+                        <MedicationCard key={med.id} medication={med} category="diclofenac_supp" />
+                      ))}
+                    </div>
+                  </div>
                 </>
               )}
             </div>
@@ -996,6 +1113,29 @@ function AppEnglish({ onChangeLanguage }) {
                               </p>
                             </div>
                           )}
+                          {/* Developer Credit */}
+                          <div className="mt-3 pt-3 border-t border-green-300">
+                            <p className="text-xs text-gray-600 flex items-center justify-center gap-1">
+                              Developed by{' '}
+                              <a 
+                                href="https://www.linkedin.com/in/saad-almodameg-5a0a43308/" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="text-blue-600 hover:text-blue-800 font-semibold"
+                              >
+                                Dr. Saad Fahad Almodameg
+                              </a>
+                              {' '}
+                              <a 
+                                href="https://www.linkedin.com/in/saad-almodameg-5a0a43308/" 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1"
+                              >
+                                <img src={linkedinLogo} alt="LinkedIn" className="h-3" />
+                              </a>
+                            </p>
+                          </div>
                         </div>
                       </div>
                       
@@ -1060,12 +1200,12 @@ function AppEnglish({ onChangeLanguage }) {
                 </CardHeader>
                 <CardContent>
                   <Accordion type="single" collapsible className="w-full">
-                    {/* Paracetamol/Acetaminophen Family */}
+                     {/* Paracetamol Family */}
                     <AccordionItem value="paracetamol">
                       <AccordionTrigger className="text-right">
                         <div className="flex items-center gap-2 md:gap-3">
                           <Pill className="h-5 w-5 text-blue-600" />
-                          <span className="text-lg font-semibold">Paracetamol/Acetaminophen Family</span>
+                          <span className="text-lg font-semibold">Paracetamol Family</span>
                         </div>
                       </AccordionTrigger>
                       <AccordionContent className="space-y-6 pt-4">
@@ -1110,7 +1250,7 @@ function AppEnglish({ onChangeLanguage }) {
                       <AccordionTrigger className="text-right">
                         <div className="flex items-center gap-2 md:gap-3">
                           <Flame className="h-5 w-5 text-red-600" />
-                          <span className="text-lg font-semibold">Ibuprofen (Brufen) & Diclofenac NSAIDs Family</span>
+                          <span className="text-lg font-semibold">Ibuprofen & Diclofenac "NSAIDs" Family</span>
                         </div>
                       </AccordionTrigger>
                       <AccordionContent className="space-y-6 pt-4">
@@ -1555,7 +1695,7 @@ function AppEnglish({ onChangeLanguage }) {
           {/* Copyright Notice */}
           <div className="mb-4 p-4 bg-gray-50 rounded-lg border">
             <div className="space-y-2">
-              <p className="text-base font-semibold text-gray-800">
+              <p className="text-base font-semibold text-gray-800 flex items-center justify-center gap-1">
                 Developed by{' '}
                 <a 
                   href="https://www.linkedin.com/in/saad-almodameg-5a0a43308/" 
@@ -1564,6 +1704,14 @@ function AppEnglish({ onChangeLanguage }) {
                   className="text-blue-600 hover:text-blue-800 hover:underline transition-colors"
                 >
                   Dr. Saad Fahad Almodameg
+                </a>
+                <a 
+                  href="https://www.linkedin.com/in/saad-almodameg-5a0a43308/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center"
+                >
+                  <img src={linkedinLogo} alt="LinkedIn" className="h-4" />
                 </a>
               </p>
               <p className="font-semibold text-gray-700">Fever Calc</p>
