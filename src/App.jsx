@@ -736,22 +736,25 @@ function App({ onChangeLanguage }) {
       <LanguageToggle currentLanguage="ar" onToggle={onChangeLanguage} />
       {/* Top Brand Header */}
       <div className="sticky top-0 bg-white text-gray-800 pt-12 pb-6 sm:pt-6 shadow-lg border-b-2 border-gray-100 z-40">
-        <div className="max-w-4xl mx-auto px-4">
-          <div className="flex items-center justify-between">
-            {/* Left side on mobile, Right side on desktop - Share Button */}
-            <button
-              onClick={() => setIsShareModalOpen(true)}
-              className="flex items-center gap-2 px-3 py-2 sm:px-4 bg-pink-600 hover:bg-pink-700 text-white rounded-lg transition-colors duration-200 shadow-md order-3 sm:order-1"
-              title="شارك الموقع"
-            >
+        <div className="max-w-4xl mx-auto px-4 relative">
+          {/* Share Button - Fixed position on mobile to align with language toggle */}
+          <button
+            onClick={() => setIsShareModalOpen(true)}
+            className="absolute left-1 top-1 sm:relative sm:left-auto sm:top-auto flex items-center gap-2 px-3 py-2 sm:px-4 bg-pink-600 hover:bg-pink-700 text-white rounded-lg transition-colors duration-200 shadow-md"
+            title="شارك الموقع"
+          >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M3 11h8V3H3v8zm2-6h4v4H5V5zm8-2v8h8V3h-8zm6 6h-4V5h4v4zM3 21h8v-8H3v8zm2-6h4v4H5v-4zm13-2h-2v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/>
               </svg>
               <span className="text-sm sm:text-base">شارك</span>
-            </button>
+          </button>
+          
+          <div className="flex items-center justify-between">
+            {/* Left placeholder on desktop */}
+            <div className="hidden sm:block sm:w-24"></div>
             
             {/* Center - Logo */}
-            <div className="flex items-center gap-3 sm:gap-4 order-2">
+            <div className="flex items-center gap-3 sm:gap-4 mx-auto sm:mx-0">
               {/* Icon Container */}
               <div className="bg-red-100 rounded-2xl p-2 sm:p-3 shadow-md border border-red-200">
                 <span className="text-3xl sm:text-4xl">🌡️</span>
@@ -766,8 +769,8 @@ function App({ onChangeLanguage }) {
               </div>
             </div>
             
-            {/* Right side on mobile - Placeholder, Left side on desktop - Placeholder */}
-            <div className="w-16 sm:w-24 order-1 sm:order-3"></div>
+            {/* Right placeholder on desktop */}
+            <div className="hidden sm:block sm:w-24"></div>
           </div>
         </div>
       </div>
