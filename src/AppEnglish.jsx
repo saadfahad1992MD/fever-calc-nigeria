@@ -199,8 +199,8 @@ const suppositories = {
       concentration: 125,
       form: 'suppository',
       image: adol125SuppImg,
-      ageRestriction: '6-12.9',
-      weightRange: '6-12.9 kg'
+      ageRestriction: '8-12.9',
+      weightRange: '8-12.9 kg'
     },
     // 200mg suppositories
     {
