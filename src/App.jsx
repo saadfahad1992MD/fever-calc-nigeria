@@ -211,8 +211,8 @@ const suppositories = {
       concentration: 200,
       form: 'تحميلة',
       image: fevadol200SuppImg,
-      ageRestriction: '13-22',
-      weightRange: '13-22 كيلوغرام'
+      ageRestriction: '13-20',
+      weightRange: '13-20 كيلوغرام'
     },
     {
       id: 'tylenol_200_supp',
@@ -221,8 +221,8 @@ const suppositories = {
       concentration: 200,
       form: 'تحميلة',
       image: tylenol200SuppImg,
-      ageRestriction: '13-22',
-      weightRange: '13-22 كيلوغرام'
+      ageRestriction: '13-20',
+      weightRange: '13-20 كيلوغرام'
     },
     // 250mg suppositories
     {
