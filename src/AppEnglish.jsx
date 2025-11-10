@@ -1728,7 +1728,7 @@ function AppEnglish({ onChangeLanguage }) {
           {/* Contact Information */}
           <div className="border-t pt-4">
             <p className="mt-1 font-medium">
-              <span className="text-black">For advertising or inquiries: </span>
+              <span className="text-black">Contact: </span>
               <span className="text-blue-600">fever.calc@gmail.com</span>
             </p>
           </div>

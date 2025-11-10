@@ -1763,7 +1763,7 @@ function App({ onChangeLanguage }) {
           {/* Contact Information */}
           <div className="border-t pt-4">
             <p className="mt-1 font-medium">
-              <span className="text-black">للإعلان او الاستفسار </span>
+              <span className="text-black">للتواصل: </span>
               <span className="text-blue-600">fever.calc@gmail.com</span>
             </p>
           </div>
