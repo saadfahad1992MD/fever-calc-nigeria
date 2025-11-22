@@ -17,6 +17,7 @@ import './App.css'
 // Import country-specific medication data
 import { medicationsIndia } from './data/medicationsIndia.js'
 import { medicationsEgypt } from './data/medicationsEgypt.js'
+import { medicationsPhilippines } from './data/medicationsPhilippines.js'
 
 // Import medication images
 import adolSyrupImg from './assets/medications/adol_syrup.webp'
@@ -321,8 +322,8 @@ function App({ onChangeLanguage, country = 'DEFAULT', language = 'ar' }) {
   const [isShareModalOpen, setIsShareModalOpen] = useState(false)
 
   // Select medications based on country
-  const medicationsData = country === 'IN' ? medicationsIndia : (country === 'EG' ? medicationsEgypt : medications)
-  const suppositoriesData = country === 'IN' ? medicationsIndia.suppositories : suppositories
+  const medicationsData = country === 'IN' ? medicationsIndia : (country === 'EG' ? medicationsEgypt : (country === 'PH' ? medicationsPhilippines : medications))
+  const suppositoriesData = country === 'IN' ? medicationsIndia.suppositories : (country === 'PH' ? medicationsPhilippines.suppositories : suppositories)
 
   // Function to convert Arabic numerals to English numerals
   const convertArabicToEnglish = (str) => {

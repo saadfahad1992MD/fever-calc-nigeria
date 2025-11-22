@@ -13,6 +13,9 @@ import { LanguageToggle } from './components/LanguageToggle.jsx'
 import linkedinLogo from './assets/linkedin-logo.png'
 import './App.css'
 
+// Import country-specific medication data
+import { medicationsPhilippines } from './data/medicationsPhilippines.js'
+
 // Import medication images
 import adolSyrupImg from './assets/medications/adol_syrup.webp'
 import adolDropsImg from './assets/medications/adol_drops_new_updated.webp'
@@ -302,7 +305,7 @@ const suppositories = {
   ]
 }
 
-function AppEnglish({ onChangeLanguage }) {
+function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
   const [weight, setWeight] = useState('') // String for text input
   const [age, setAge] = useState('') // String for text input
   const [ageUnit, setAgeUnit] = useState('') // 'months' or 'years' - empty by default
@@ -313,6 +316,10 @@ function AppEnglish({ onChangeLanguage }) {
   const [enlargedImage, setEnlargedImage] = useState(null)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [medicationType, setMedicationType] = useState('syrup') // 'syrup' or 'suppository'
+
+  // Select medications based on country
+  const medicationsData = country === 'PH' ? medicationsPhilippines : medications
+  const suppositoriesData = country === 'PH' ? medicationsPhilippines.suppositories : suppositories
 
   // Function to convert Arabic numerals to English numerals
   const convertArabicToEnglish = (str) => {
@@ -464,8 +471,8 @@ function AppEnglish({ onChangeLanguage }) {
     if (!weightNum) return []
     
     // Get all suppositories from the suppositories object
-    const paracetamolSupps = suppositories.paracetamol || []
-    const diclofenacSupps = suppositories.diclofenac || []
+    const paracetamolSupps = suppositoriesData.paracetamol || []
+    const diclofenacSupps = suppositoriesData.diclofenac || []
     
     const allSuppositories = [...paracetamolSupps, ...diclofenacSupps]
     
@@ -960,7 +967,7 @@ function AppEnglish({ onChangeLanguage }) {
                       <h3 className="text-lg font-semibold text-blue-700">Paracetamol medications</h3>
                     </div>
                     <div className="grid gap-4 md:grid-cols-2">
-                      {medications.paracetamol.map(med => (
+                      {medicationsData.paracetamol.map(med => (
                         <MedicationCard key={med.id} medication={med} category="paracetamol" />
                       ))}
                     </div>
@@ -996,7 +1003,7 @@ function AppEnglish({ onChangeLanguage }) {
                     </div>
                     
                     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                      {medications.ibuprofen.map(med => (
+                      {medicationsData.ibuprofen.map(med => (
                         <MedicationCard key={med.id} medication={med} category="ibuprofen" />
                       ))}
                     </div>
@@ -1013,7 +1020,7 @@ function AppEnglish({ onChangeLanguage }) {
                       <h3 className="text-lg font-semibold text-blue-700">Paracetamol Suppositories</h3>
                     </div>
                     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                      {suppositories.paracetamol.map(med => (
+                      {suppositoriesData.paracetamol.map(med => (
                         <MedicationCard key={med.id} medication={med} category="paracetamol_supp" />
                       ))}
                     </div>
@@ -1040,7 +1047,7 @@ function AppEnglish({ onChangeLanguage }) {
                     </div>
                     
                     <div className="grid gap-4 md:grid-cols-2">
-                      {suppositories.diclofenac.map(med => (
+                      {suppositoriesData.diclofenac.map(med => (
                         <MedicationCard key={med.id} medication={med} category="diclofenac_supp" />
                       ))}
                     </div>

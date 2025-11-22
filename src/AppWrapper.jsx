@@ -22,8 +22,8 @@ export function AppWrapper() {
         // Set default language based on country if not already set
         const savedLanguage = localStorage.getItem('selectedLanguage')
         if (!savedLanguage) {
-          // India -> Hindi, others -> Arabic
-          const defaultLang = detectedCountry === 'IN' ? 'hi' : 'ar'
+          // India -> Hindi, Philippines -> English, others -> Arabic
+          const defaultLang = detectedCountry === 'IN' ? 'hi' : (detectedCountry === 'PH' ? 'en' : 'ar')
           setLanguage(defaultLang)
           document.documentElement.dir = defaultLang === 'ar' ? 'rtl' : 'ltr'
           document.documentElement.lang = defaultLang
@@ -54,10 +54,13 @@ export function AppWrapper() {
 
   const handleChangeLanguage = () => {
     // For India: toggle between Hindi (hi) and English (en)
+    // For Philippines: English only (no toggle needed, but keep function for consistency)
     // For others: toggle between Arabic (ar) and English (en)
     let newLanguage
     if (country === 'IN') {
       newLanguage = language === 'hi' ? 'en' : 'hi'
+    } else if (country === 'PH') {
+      newLanguage = 'en' // Philippines uses English only
     } else {
       newLanguage = language === 'ar' ? 'en' : 'ar'
     }
@@ -93,6 +96,11 @@ export function AppWrapper() {
       return <AppIndia onChangeLanguage={handleChangeLanguage} />
     }
     return <AppIndiaEnglish onChangeLanguage={handleChangeLanguage} />
+  }
+  
+  if (country === 'PH') {
+    // Philippines version - English only
+    return <AppEnglish onChangeLanguage={handleChangeLanguage} country={country} />
   }
   
   // Saudi/Egypt/Default version
