@@ -12,6 +12,9 @@ export function AppWrapper() {
   const [language, setLanguage] = useState(null) // Will be set based on country
   const [country, setCountry] = useState('DEFAULT')
   const [isLoadingCountry, setIsLoadingCountry] = useState(true)
+  
+  // Check if admin mode is enabled via URL parameter
+  const isAdmin = new URLSearchParams(window.location.search).get('admin') === 'true'
 
   // Detect user's country on mount
   useEffect(() => {
@@ -116,7 +119,8 @@ export function AppWrapper() {
   return (
     <>
       {appContent}
-      <CountrySelector currentCountry={country} />
+      {/* Only show country selector in admin mode */}
+      {isAdmin && <CountrySelector currentCountry={country} />}
     </>
   )
 }
