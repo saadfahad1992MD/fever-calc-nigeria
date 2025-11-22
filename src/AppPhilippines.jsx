@@ -295,7 +295,7 @@ const oldSuppositories = {
 }
 // End of old hardcoded data
 
-function AppPhilippines({ onChangeLanguage, country = 'DEFAULT' }) {
+function AppPhilippines({ onChangeLanguage }) {
   const [weight, setWeight] = useState('') // String for text input
   const [age, setAge] = useState('') // String for text input
   const [ageUnit, setAgeUnit] = useState('') // 'buwan' or 'taon' - empty by default
@@ -736,7 +736,7 @@ function AppPhilippines({ onChangeLanguage, country = 'DEFAULT' }) {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-      <LanguageToggle currentLanguage="en" targetLanguage="tl" onToggle={onChangeLanguage} />
+      <LanguageToggle currentLanguage="tl" targetLanguage="en" onToggle={onChangeLanguage} />
       {/* Top Brand Header */}
       <div className="sticky top-0 bg-white text-gray-800 py-6 shadow-lg border-b-2 border-gray-100 z-40">
         <div className="max-w-4xl mx-auto px-4">

@@ -3,7 +3,7 @@ import App from './App.jsx'
 import AppEnglish from './AppEnglish.jsx'
 import AppIndia from './AppIndia.jsx'
 import AppIndiaEnglish from './AppIndiaEnglish.jsx'
-import AppPhilippines from './AppPhilippines.jsx'
+// import AppPhilippines from './AppPhilippines.jsx'
 import { LanguageSelector } from './LanguageSelector.jsx'
 import { getUserCountry } from './utils/geolocation.js'
 
@@ -100,10 +100,7 @@ export function AppWrapper() {
   }
   
   if (country === 'PH') {
-    // Philippines version - Tagalog or English
-    if (language === 'tl') {
-      return <AppPhilippines onChangeLanguage={handleChangeLanguage} />
-    }
+    // Philippines version - English only for now (Tagalog coming soon)
     return <AppEnglish onChangeLanguage={handleChangeLanguage} country={country} />
   }
   
