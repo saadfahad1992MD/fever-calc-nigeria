@@ -16,45 +16,34 @@ import './App.css'
 // Import country-specific medication data
 import { medicationsPhilippines } from './data/medicationsPhilippines.js'
 
-// Import medication images
-import adolSyrupImg from './assets/medications/adol_syrup.webp'
-import adolDropsImg from './assets/medications/adol_drops_new_updated.webp'
-import fevadolImg from './assets/medications/fevadol_new.jpg'
-import panadolImg from './assets/medications/panadol_children_5_12.webp'
-import panadolMotherChildImg from './assets/medications/panadol_baby_infant.jpeg'
-import panadolBabySuspensionImg from './assets/medications/panadol_baby_suspension.webp'
-import defadolImg from './assets/medications/defadol.jpg'
-import nurofenImg from './assets/medications/nurofen.webp'
-import brufenImg from './assets/medications/brufen.webp'
-import profinalImg from './assets/medications/profinal.webp'
-import brufen2Img from './assets/medications/brufen2.webp'
-import sapofenImg from './assets/medications/sapofen.webp'
+// Import Philippines medication images
+import biogesicDropsImg from './assets/medications/philippines/biogesic_drops.webp'
+import tempraDropsImg from './assets/medications/philippines/tempra_drops.jpg'
+import tempra120Img from './assets/medications/philippines/tempra_120.png'
+import tempraForte250Img from './assets/medications/philippines/tempra_forte_250.jpg'
+import biogesic250Img from './assets/medications/philippines/biogesic_250.png'
+import dolanFP100Img from './assets/medications/philippines/dolan_fp_100.jpg'
+import dolanFPForte200Img from './assets/medications/philippines/dolan_fp_forte_200.png'
+import advilSuspensionImg from './assets/medications/philippines/advil_suspension.png'
 
-// Import suppository images
-import fevadol100SuppImg from './assets/suppositories/fevadol_100.webp'
-import fevadol200SuppImg from './assets/suppositories/fevadol_200.jpg'
-import fevadol350SuppImg from './assets/suppositories/fevadol_350.jpg'
-import adol125SuppImg from './assets/suppositories/adol_125.jpg'
-import adol250SuppImg from './assets/suppositories/adol_250.webp'
-import tylenol100SuppImg from './assets/suppositories/tylenol_100.jpg'
-import tylenol200SuppImg from './assets/suppositories/tylenol_200.webp'
-import tylenol350SuppImg from './assets/suppositories/tylenol_350.jpg'
-import rofenac12_5SuppImg from './assets/suppositories/rofenac_12_5.png'
-import rofenac25SuppImg from './assets/suppositories/rofenac_25.webp'
-import voltaren12_5SuppImg from './assets/suppositories/voltaren_12_5.jpg'
-import voltaren25SuppImg from './assets/suppositories/voltaren_25.webp'
+// No suppositories for Philippines version
 
-const medications = {
+// Use Philippines medications database
+const medications = medicationsPhilippines;
+const suppositories = medicationsPhilippines.suppositories;
+
+// Old hardcoded data (not used anymore)
+const oldMedications = {
   paracetamol: [
     {
-      id: 'adol_drops',
+      id: 'adol_patak',
       name: 'Adol Drops',
       ingredient: 'Paracetamol',
       concentration: 100, // mg per ml
       volume: 1, // ml
       form: 'Drops',
       image: adolDropsImg,
-      ageRestriction: '2 years and under'
+      ageRestriction: '2 taon and under'
     },
     {
       id: 'adol_syrup',
@@ -110,11 +99,11 @@ const medications = {
       id: 'panadol-children',
       name: 'Panadol',
       ingredient: 'Paracetamol',
-      concentration: 240, // mg per 5ml (Children's 5-12 years)
+      concentration: 240, // mg per 5ml (Children's 5-12 taon)
       volume: 5, // ml
       form: 'Syrup',
       image: panadolImg,
-      ageRestriction: 'Suitable from 5 years old'
+      ageRestriction: 'Suitable from 5 taon old'
     }
   ],
   ibuprofen: [
@@ -126,7 +115,7 @@ const medications = {
       volume: 5, // ml
       form: 'Syrup',
       image: nurofenImg,
-      ageRestriction: 'Age over 6 months'
+      ageRestriction: 'Edad na higit sa 6 na buwan'
     },
     {
       id: 'prof',
@@ -136,7 +125,7 @@ const medications = {
       volume: 5, // ml
       form: 'Syrup',
       image: brufenImg,
-      ageRestriction: 'Age over 6 months'
+      ageRestriction: 'Edad na higit sa 6 na buwan'
     },
     {
       id: 'profinal',
@@ -146,7 +135,7 @@ const medications = {
       volume: 5, // ml
       form: 'Syrup',
       image: profinalImg,
-      ageRestriction: 'Age over 6 months'
+      ageRestriction: 'Edad na higit sa 6 na buwan'
     },
     {
       id: 'brufen2',
@@ -156,7 +145,7 @@ const medications = {
       volume: 5, // ml
       form: 'Syrup',
       image: brufen2Img,
-      ageRestriction: 'Age over 6 months'
+      ageRestriction: 'Edad na higit sa 6 na buwan'
     },
     {
       id: 'sapofen',
@@ -166,12 +155,12 @@ const medications = {
       volume: 5, // ml
       form: 'Syrup',
       image: sapofenImg,
-      ageRestriction: 'Age over 6 months'
+      ageRestriction: 'Edad na higit sa 6 na buwan'
     }
   ]
 }
 
-const suppositories = {
+const oldSuppositories = {
   paracetamol: [
     // 100mg suppositories
     {
@@ -179,7 +168,7 @@ const suppositories = {
       name: 'Fevadol 100',
       ingredient: 'Paracetamol',
       concentration: 100,
-      form: 'suppository',
+      form: 'supositoryo',
       image: fevadol100SuppImg,
       ageRestriction: '6-12.9',
       weightRange: '6-12.9 kg'
@@ -189,7 +178,7 @@ const suppositories = {
       name: 'Tylenol 100',
       ingredient: 'Paracetamol',
       concentration: 100,
-      form: 'suppository',
+      form: 'supositoryo',
       image: tylenol100SuppImg,
       ageRestriction: '6-12.9',
       weightRange: '6-12.9 kg'
@@ -200,7 +189,7 @@ const suppositories = {
       name: 'Adol 125',
       ingredient: 'Paracetamol',
       concentration: 125,
-      form: 'suppository',
+      form: 'supositoryo',
       image: adol125SuppImg,
       ageRestriction: '8-12.9',
       weightRange: '8-12.9 kg'
@@ -211,7 +200,7 @@ const suppositories = {
       name: 'Fevadol 200',
       ingredient: 'Paracetamol',
       concentration: 200,
-      form: 'suppository',
+      form: 'supositoryo',
       image: fevadol200SuppImg,
       ageRestriction: '13-20',
       weightRange: '13-20 kg'
@@ -221,7 +210,7 @@ const suppositories = {
       name: 'Tylenol 200',
       ingredient: 'Paracetamol',
       concentration: 200,
-      form: 'suppository',
+      form: 'supositoryo',
       image: tylenol200SuppImg,
       ageRestriction: '13-20',
       weightRange: '13-20 kg'
@@ -232,7 +221,7 @@ const suppositories = {
       name: 'Adol 250',
       ingredient: 'Paracetamol',
       concentration: 250,
-      form: 'suppository',
+      form: 'supositoryo',
       image: adol250SuppImg,
       ageRestriction: '15-22',
       weightRange: '15-22 kg'
@@ -243,7 +232,7 @@ const suppositories = {
       name: 'Fevadol 350',
       ingredient: 'Paracetamol',
       concentration: 350,
-      form: 'suppository',
+      form: 'supositoryo',
       image: fevadol350SuppImg,
       ageRestriction: '23-35',
       weightRange: '23-35 kg'
@@ -253,7 +242,7 @@ const suppositories = {
       name: 'Tylenol 350',
       ingredient: 'Paracetamol',
       concentration: 350,
-      form: 'suppository',
+      form: 'supositoryo',
       image: tylenol350SuppImg,
       ageRestriction: '23-35',
       weightRange: '23-35 kg'
@@ -266,7 +255,7 @@ const suppositories = {
       name: 'Rofenac 12.5',
       ingredient: 'Diclofenac',
       concentration: 12.5,
-      form: 'suppository',
+      form: 'supositoryo',
       image: rofenac12_5SuppImg,
       ageRestriction: '8-16',
       weightRange: '8-16 kg'
@@ -276,7 +265,7 @@ const suppositories = {
       name: 'Voltaren 12.5',
       ingredient: 'Diclofenac',
       concentration: 12.5,
-      form: 'suppository',
+      form: 'supositoryo',
       image: voltaren12_5SuppImg,
       ageRestriction: '8-16',
       weightRange: '8-16 kg'
@@ -287,7 +276,7 @@ const suppositories = {
       name: 'Rofenac 25',
       ingredient: 'Diclofenac',
       concentration: 25,
-      form: 'suppository',
+      form: 'supositoryo',
       image: rofenac25SuppImg,
       ageRestriction: '17-25',
       weightRange: '17-25 kg'
@@ -297,25 +286,26 @@ const suppositories = {
       name: 'Voltaren 25',
       ingredient: 'Diclofenac',
       concentration: 25,
-      form: 'suppository',
+      form: 'supositoryo',
       image: voltaren25SuppImg,
       ageRestriction: '17-25',
       weightRange: '17-25 kg'
     }
   ]
 }
+// End of old hardcoded data
 
-function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
+function AppPhilippines({ onChangeLanguage, country = 'DEFAULT' }) {
   const [weight, setWeight] = useState('') // String for text input
   const [age, setAge] = useState('') // String for text input
-  const [ageUnit, setAgeUnit] = useState('') // 'months' or 'years' - empty by default
+  const [ageUnit, setAgeUnit] = useState('') // 'buwan' or 'taon' - empty by default
   const [ageCategory, setAgeCategory] = useState('') // 'infant' (under 1) or 'child' (1+)
   const [selectedMedication, setSelectedMedication] = useState(null)
   const [result, setResult] = useState(null)
   const [activeTab, setActiveTab] = useState('calculator')
-  const [enlargedImage, setEnlargedImage] = useState(null)
+  const [enlargedImage, setPalakihindImage] = useState(null)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
-  const [medicationType, setMedicationType] = useState('syrup') // 'syrup' or 'suppository'
+  const [medicationType, setMedicationType] = useState('syrup') // 'syrup' or 'supositoryo'
 
   // Select medications based on country
   const medicationsData = country === 'PH' ? medicationsPhilippines : medications
@@ -347,12 +337,12 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
     const ageNum = parseFloat(ageStr)
     
     if (weightNum <= 0 || weightNum > 100) {
-      setResult({ error: 'Please enter a valid weight (1-100 kg)' })
+      setResult({ error: 'Mangyaring maglagay ng wastong timbang (1-100 kg)' })
       return
     }
 
-    // Convert age to months if needed
-    const ageInMonths = ageUnit === 'years' ? ageNum * 12 : ageNum
+    // Convert age to buwan if needed
+    const ageInMonths = ageUnit === 'taon' ? ageNum * 12 : ageNum
 
     let dosagePerKg
     let frequency
@@ -361,40 +351,40 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
 
     if (selectedMedication.ingredient === 'Paracetamol') {
       dosagePerKg = 15 // 10-15mg/kg per dose
-      frequency = 'Every 4-6 hours'
+      frequency = 'Bawat 4-6 oras'
       maxDailyDoses = 5
       maxSingleDose = 500 // Maximum 500mg per dose
     } else if (selectedMedication.ingredient === 'Ibuprofen') {
       dosagePerKg = 10 // 5-10mg/kg per dose
-      frequency = 'Every 6-8 hours'
+      frequency = 'Bawat 6-8 oras'
       maxDailyDoses = 3
       maxSingleDose = 400 // Maximum 400mg per dose
     } else if (selectedMedication.ingredient === 'Diclofenac') {
       // New diclofenac calculation logic based on weight ranges
-      frequency = 'Every 8-12 hours'
+      frequency = 'Bawat 8-12 oras'
       maxDailyDoses = 2
       
       // Check age requirement (minimum 1 year)
       if (ageInMonths < 12) {
-        setResult({ error: 'Diclofenac is suitable for children aged one year and above' })
+        setResult({ error: 'Ang Diclofenac ay angkop para sa mga batang may edad na isang taon pataas' })
         return
       }
       
       // Weight-based dosing for diclofenac suppositories
-      if (selectedMedication.form === 'suppository') {
+      if (selectedMedication.form === 'supositoryo') {
         let appropriateDose = 0
         if (weightNum >= 8 && weightNum <= 16) {
           appropriateDose = 12.5
         } else if (weightNum >= 17 && weightNum <= 25) {
           appropriateDose = 25
         } else {
-          setResult({ error: 'Diclofenac is suitable for weights 8-25 kg only' })
+          setResult({ error: 'Ang Diclofenac ay angkop lamang para sa timbang na 8-25 kg' })
           return
         }
         
         // Check if selected medication matches the appropriate dose
         if (selectedMedication.concentration !== appropriateDose) {
-          setResult({ error: `Please select Diclofenac suppository ${appropriateDose}mg appropriate for your child's weight` })
+          setResult({ error: `Please select Diclofenac supositoryo ${appropriateDose}mg appropriate for your child's weight` })
           return
         }
         
@@ -418,8 +408,8 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
       totalDoseMg = maxSingleDose
     }
 
-    if (selectedMedication.form === 'suppository') {
-      // For suppositories, always show one suppository
+    if (selectedMedication.form === 'supositoryo') {
+      // For suppositories, always show one supositoryo
       setResult({
         medication: selectedMedication,
         weight: weightNum,
@@ -433,7 +423,7 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
       // For syrups, calculate volume needed
       let volumeNeeded = (totalDoseMg * selectedMedication.volume) / selectedMedication.concentration
       
-      // Round DOWN to nearest 0.1ml for drops, 0.5ml for syrups (safety first)
+      // Round DOWN to nearest 0.1ml for patak, 0.5ml for syrups (safety first)
       if (selectedMedication.form === 'Drops') {
         volumeNeeded = Math.floor(volumeNeeded * 10) / 10  // Round down to 0.1ml
       } else {
@@ -467,16 +457,16 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
   }
 
   // Function to filter appropriate suppositories based on age and weight
-  const getAppropriateSuppositoriesForAge = (ageInMonths, weightNum) => {
+  const getAppropriateSupositoryoForAge = (ageInMonths, weightNum) => {
     if (!weightNum) return []
     
     // Get all suppositories from the suppositories object
     const paracetamolSupps = suppositoriesData.paracetamol || []
     const diclofenacSupps = suppositoriesData.diclofenac || []
     
-    const allSuppositories = [...paracetamolSupps, ...diclofenacSupps]
+    const allSupositoryo = [...paracetamolSupps, ...diclofenacSupps]
     
-    return allSuppositories.filter(med => {
+    return allSupositoryo.filter(med => {
       // For paracetamol suppositories, use weight-based filtering only
       if (med.ingredient === 'Paracetamol') {
         const weightRange = med.weightRange
@@ -494,7 +484,7 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
       
       // For diclofenac suppositories, use weight-based filtering with minimum age of 1 year
       if (med.ingredient === 'Diclofenac') {
-        // Check minimum age (12 months = 1 year)
+        // Check minimum age (12 buwan = 1 year)
         if (ageInMonths < 12) return false
         
         // New diclofenac calculation logic:
@@ -515,20 +505,20 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
   }
 
   const MedicationCard = ({ medication, category }) => {
-    // Check if medication is Ibuprofen and age is under 6 months
+    // Check if medication is Ibuprofen and age is under 6 buwan
     const isIbuprofen = medication.ingredient === 'Ibuprofen'
-    const ageInMonths = ageUnit === 'years' ? parseFloat(age) * 12 : parseFloat(age)
+    const ageInMonths = ageUnit === 'taon' ? parseFloat(age) * 12 : parseFloat(age)
     const isUnder6Months = age && ageUnit && ageInMonths < 6
     
-    // Check if medication is Adol Drops and age is 2 years or above
-    const isAdolDrops = medication.id === 'adol_drops'
-    const is2YearsOrAbove = age && ageUnit === 'years' && parseFloat(age) >= 2
+    // Check if medication is Adol Drops and age is 2 taon or above
+    const isAdolDrops = medication.id === 'adol_patak'
+    const is2YearsOrAbove = age && ageUnit === 'taon' && parseFloat(age) >= 2
     
-    // Check if suppository is suitable for current age/weight
+    // Check if supositoryo is suitable for current age/weight
     let isSuppositoryUnsuitable = false
     let unsuitabilityReason = ''
     
-    if (medication.form === 'suppository' && age && ageUnit && weight) {
+    if (medication.form === 'supositoryo' && age && ageUnit && weight) {
       const weightNum = parseFloat(weight)
       
       if (medication.ingredient === 'Paracetamol') {
@@ -588,17 +578,17 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
       }
       
       if (isSuppositoryUnsuitable) {
-        alert(`⚠️ Warning: This suppository is not suitable for your child\n${unsuitabilityReason}`)
+        alert(`⚠️ Warning: This supositoryo is not suitable for your child\n${unsuitabilityReason}`)
         return
       }
       
       if (isIbuprofen && isUnder6Months) {
-        alert('⚠️ Warning: Ibuprofen medications are suitable for children 6 months and older only')
+        alert('⚠️ Warning: Mga gamot na Ibuprofen are suitable for children 6 buwan and older only')
         return
       }
       
       if (isAdolDrops && is2YearsOrAbove) {
-        alert('⚠️ Warning: Adol Drops are suitable for children under 2 years old only')
+        alert('⚠️ Warning: Adol Drops are suitable for children under 2 taon old only')
         return
       }
       setSelectedMedication(medication)
@@ -638,23 +628,23 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
             <button
               onClick={(e) => {
                 e.stopPropagation()
-                setEnlargedImage(medication)
+                setPalakihindImage(medication)
                 setCurrentImageIndex(0)
               }}
               className="flex items-center gap-1 px-2 py-1 bg-blue-500 hover:bg-blue-600 text-white text-xs rounded-md transition-colors duration-200"
-              title="Click to Enlarge"
+              title="Click to Palakihin"
             >
               <ZoomIn className="w-3 h-3" />
-              <span>Enlarge</span>
+              <span>Palakihin</span>
             </button>
           </div>
           <div className="flex-1">
             <h3 className="font-semibold text-lg">{medication.name}</h3>
             <p className="text-sm text-gray-600">{medication.ingredient}</p>
             <div className="text-sm text-gray-500">
-              <span>Concentration: </span>
+              <span>Konsentrasyon: </span>
               <span className="font-bold text-blue-600" dir="ltr">
-                {medication.form === 'suppository' 
+                {medication.form === 'supositoryo' 
                   ? `${medication.concentration}mg`
                   : `${medication.concentration}mg/${medication.volume}ml`
                 }
@@ -668,12 +658,12 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
             )}
             {(isIbuprofen && isUnder6Months) && (
               <p className="text-xs text-red-600 font-bold mt-1 bg-red-50 px-2 py-1 rounded">
-                ⚠️ For 6 months and older
+                ⚠️ For 6 buwan and older
               </p>
             )}
             {(isAdolDrops && is2YearsOrAbove) && (
               <p className="text-xs text-red-600 font-bold mt-1 bg-red-50 px-2 py-1 rounded">
-                ⚠️ For children under 2 years
+                ⚠️ For children under 2 taon
               </p>
             )}
             {isSuppositoryUnsuitable && (
@@ -734,7 +724,7 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
               }}
               className="w-full flex items-center justify-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-md transition-colors duration-200"
             >
-              <span>Calculate Dose</span>
+              <span>Kalkulahin ang Dosis</span>
               <span>💊</span>
             </button>
           </div>
@@ -746,7 +736,7 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
-      <LanguageToggle currentLanguage="en" targetLanguage={country === 'PH' ? 'tl' : 'ar'} onToggle={onChangeLanguage} />
+      <LanguageToggle currentLanguage="en" targetLanguage="tl" onToggle={onChangeLanguage} />
       {/* Top Brand Header */}
       <div className="sticky top-0 bg-white text-gray-800 py-6 shadow-lg border-b-2 border-gray-100 z-40">
         <div className="max-w-4xl mx-auto px-4">
@@ -759,7 +749,7 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
             {/* Text Container */}
             <div className="text-center">
               <h1 className="font-bold text-3xl tracking-wide">
-                <span className="text-red-600 text-4xl">Fever Calc</span>
+                <span className="text-red-600 text-4xl">Kalkulador ng Lagnat</span>
               </h1>
             </div>
           </div>
@@ -772,11 +762,11 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
           <div className="text-center">
             <div className="flex items-center justify-center gap-2 mb-2">
               <h1 className="text-2xl font-bold text-gray-900">
-                Fever Reducer & Pain Reliever Dosage Calculator for Children
+                Kalkulador ng Dosis ng Pampababa ng Lagnat at Pampaawas ng Sakit para sa mga Bata
               </h1>
             </div>
             <p className="text-gray-600 mb-3">
-              Calculate the correct dose for your child based on weight and medication type
+              Kalkulahin ang tamang dosis para sa inyong anak batay sa timbang at uri ng gamot
             </p>
           </div>
         </div>
@@ -790,11 +780,11 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
           <TabsList className="grid w-full grid-cols-2 mb-6">
             <TabsTrigger value="calculator" className="flex items-center gap-2">
               <Calculator className="w-4 h-4" />
-              Calculator
+              Kalkulador
             </TabsTrigger>
             <TabsTrigger value="info" className="flex items-center gap-2">
               <Info className="w-4 h-4" />
-              Medical Information
+              Medikal na Impormasyon
             </TabsTrigger>
           </TabsList>
 
@@ -804,10 +794,10 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
                   <Calculator className="w-5 h-5" />
-                  Child Information
+                  Impormasyon ng Bata
                 </CardTitle>
                 <CardDescription>
-                  Enter child's age and weight
+                  Ilagay ang edad at timbang ng bata
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -815,7 +805,7 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
                   {/* Step 1: Age Category Selection */}
                   <div className="space-y-3">
                     <label className="text-sm font-medium flex items-center gap-1">
-                      How old is your child?
+                      Ilang taon na ang inyong anak?
                       <span className="text-red-500 text-xs">*</span>
                     </label>
                     <div className="grid grid-cols-2 gap-3">
@@ -825,14 +815,14 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
                         className="h-20 text-base"
                         onClick={() => {
                           setAgeCategory('infant')
-                          setAgeUnit('months')
+                          setAgeUnit('buwan')
                           setAge('')
                         }}
                       >
                         <div className="text-center">
                           <div className="text-2xl mb-1">👶</div>
-                          <div>Less than 1 year</div>
-                          <div className="text-xs opacity-70">(1-12 months)</div>
+                          <div>Wala pang 1 taon</div>
+                          <div className="text-xs opacity-70">(1-12 buwan)</div>
                         </div>
                       </Button>
                       <Button
@@ -841,14 +831,14 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
                         className="h-20 text-base"
                         onClick={() => {
                           setAgeCategory('child')
-                          setAgeUnit('years')
+                          setAgeUnit('taon')
                           setAge('')
                         }}
                       >
                         <div className="text-center">
                           <div className="text-2xl mb-1">🧒</div>
-                          <div>More than 1 year</div>
-                          <div className="text-xs opacity-70">(1-14 years)</div>
+                          <div>Higit sa 1 taon</div>
+                          <div className="text-xs opacity-70">(1-14 taon)</div>
                         </div>
                       </Button>
                     </div>
@@ -858,25 +848,25 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
                   {ageCategory && (
                     <div className="space-y-2 animate-in slide-in-from-top-2 duration-300">
                       <label className="text-sm font-medium">
-                        {ageCategory === 'infant' ? 'Select age in months' : 'Select age in years'}
+                        {ageCategory === 'infant' ? 'Pumili ng edad in buwan' : 'Pumili ng edad in taon'}
                       </label>
                       <Select value={age} onValueChange={setAge}>
                         <SelectTrigger className="text-lg">
-                          <SelectValue placeholder={ageCategory === 'infant' ? 'Select months' : 'Select years'} />
+                          <SelectValue placeholder={ageCategory === 'infant' ? 'Select buwan' : 'Select taon'} />
                         </SelectTrigger>
                         <SelectContent>
                           {ageCategory === 'infant' ? (
-                            // 1-12 months
+                            // 1-12 buwan
                             Array.from({ length: 12 }, (_, i) => i + 1).map(month => (
                               <SelectItem key={month} value={month.toString()}>
-                                {month} {month === 1 ? 'month' : 'months'}
+                                {month} {month === 1 ? 'month' : 'buwan'}
                               </SelectItem>
                             ))
                           ) : (
-                            // 1-14 years
+                            // 1-14 taon
                             Array.from({ length: 14 }, (_, i) => i + 1).map(year => (
                               <SelectItem key={year} value={year.toString()}>
-                                {year} {year === 1 ? 'year' : 'years'}
+                                {year} {year === 1 ? 'year' : 'taon'}
                               </SelectItem>
                             ))
                           )}
@@ -888,10 +878,10 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
                   {/* Step 3: Weight Selection */}
                   {age && (
                     <div className="space-y-2 animate-in slide-in-from-top-2 duration-300">
-                      <label className="text-sm font-medium">Child's Weight (kg)</label>
+                      <label className="text-sm font-medium">Timbang ng Bata (kg)</label>
                       <Select value={weight} onValueChange={setWeight}>
                         <SelectTrigger className="text-lg">
-                          <SelectValue placeholder="Select weight" />
+                          <SelectValue placeholder="Pumili ng timbang" />
                         </SelectTrigger>
                         <SelectContent>
                           {ageCategory === 'infant' ? (
@@ -935,7 +925,7 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
             {/* Medication Selection */}
             <div className="space-y-6">
               <div className="space-y-4">
-                <h2 className="text-xl font-semibold">Select medication form:</h2>
+                <h2 className="text-xl font-semibold">Pumili ng anyo ng gamot:</h2>
                 
                 {/* Medication Type Selection */}
                 <div className="flex gap-4 justify-center">
@@ -948,12 +938,12 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
                     <span>Syrup</span>
                   </Button>
                   <Button
-                    variant={medicationType === 'suppository' ? 'default' : 'outline'}
-                    onClick={() => changeMedicationType('suppository')}
+                    variant={medicationType === 'supositoryo' ? 'default' : 'outline'}
+                    onClick={() => changeMedicationType('supositoryo')}
                     className="flex items-center gap-2 px-6 py-3"
                   >
                     <span>💊</span>
-                    <span>Suppositories</span>
+                    <span>Supositoryo</span>
                   </Button>
                 </div>
               </div>
@@ -964,7 +954,7 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
                   <div>
                     <div className="flex items-center gap-2 mb-4">
                       <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
-                      <h3 className="text-lg font-semibold text-blue-700">Paracetamol medications</h3>
+                      <h3 className="text-lg font-semibold text-blue-700">Mga gamot na Paracetamol</h3>
                     </div>
                     <div className="grid gap-4 md:grid-cols-2">
                       {medicationsData.paracetamol.map(med => (
@@ -986,19 +976,19 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
                   <div>
                     <div className="flex items-center gap-2 mb-2">
                       <div className="w-4 h-4 bg-green-500 rounded-full"></div>
-                      <h3 className="text-lg font-semibold text-green-700">Ibuprofen Medications</h3>
+                      <h3 className="text-lg font-semibold text-green-700">Mga Gamot na Ibuprofen</h3>
                       <Badge variant="outline" className="text-green-600">
-                        Age over 6 months
+                        Edad na higit sa 6 na buwan
                       </Badge>
                     </div>
                     
                     {/* Additional Information */}
                     <div className="mb-4 p-3 bg-green-50 border border-green-200 rounded-lg">
                       <p className="text-sm text-green-800 leading-relaxed">
-                        For fever or pain that doesn't respond to paracetamol, your doctor may recommend a stronger fever reducer or pain reliever such as ibuprofen, alternating with paracetamol every 4 hours if necessary
+                        Para sa lagnat o sakit na hindi gumagaling sa paracetamol, maaaring magrekomenda ang inyong doktor ng mas malakas na pampababa ng lagnat o pampaawas ng sakit tulad ng ibuprofen, palit-palit sa paracetamol bawat 4 na oras kung kinakailangan
                       </p>
                       <p className="text-sm text-green-700 font-medium mt-2">
-                        <strong>Note:</strong> Ibuprofen does not interact with paracetamol and can be taken at the same time
+                        <strong>Tandaan:</strong> Ang Ibuprofen ay hindi nakikipag-ugnayan sa paracetamol at maaaring inumin nang sabay
                       </p>
                     </div>
                     
@@ -1011,13 +1001,13 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
                 </>
               )}
 
-              {medicationType === 'suppository' && (
+              {medicationType === 'supositoryo' && (
                 <>
-                  {/* Paracetamol Suppositories Section - Show ALL */}
+                  {/* Mga Supositoryo ng Paracetamol Section - Show ALL */}
                   <div>
                     <div className="flex items-center gap-2 mb-4">
                       <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
-                      <h3 className="text-lg font-semibold text-blue-700">Paracetamol Suppositories</h3>
+                      <h3 className="text-lg font-semibold text-blue-700">Mga Supositoryo ng Paracetamol</h3>
                     </div>
                     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
                       {suppositoriesData.paracetamol.map(med => (
@@ -1026,13 +1016,13 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
                     </div>
                   </div>
                   
-                  {/* Diclofenac Suppositories Section - Show ALL */}
+                  {/* Mga Supositoryo ng Diclofenac Section - Show ALL */}
                   <div>
                     <div className="flex items-center gap-2 mb-2">
                       <div className="w-4 h-4 bg-green-500 rounded-full"></div>
-                      <h3 className="text-lg font-semibold text-green-700">Diclofenac Suppositories</h3>
+                      <h3 className="text-lg font-semibold text-green-700">Mga Supositoryo ng Diclofenac</h3>
                       <Badge variant="outline" className="text-green-600">
-                        For children over 1 year
+                        Para sa mga bata na higit sa 1 taon
                       </Badge>
                     </div>
                     
@@ -1042,7 +1032,7 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
                         For fever or pain that doesn't respond to paracetamol, your doctor may recommend a stronger fever reducer or pain reliever such as diclofenac suppositories
                       </p>
                       <p className="text-sm text-green-700 font-medium mt-2">
-                        <strong>Note:</strong> Diclofenac suppositories do not interact with paracetamol, but they belong to the same family as ibuprofen syrup. Do not take them at the same time and leave 8 hours between them
+                        <strong>Tandaan:</strong> Diclofenac suppositories do not interact with paracetamol, but they belong to the same family as ibuprofen syrup. Do not take them at the same time and leave 8 hours between them
                       </p>
                     </div>
                     
@@ -1064,14 +1054,14 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
                   disabled={!weight || !age || !ageUnit || !selectedMedication}
                   className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 text-lg"
                 >
-                  Calculate Dose
+                  Kalkulahin ang Dosis
                 </Button>
                 <Button 
                   onClick={resetForm}
                   variant="outline"
                   className="px-8 py-3 text-lg"
                 >
-                  Reset
+                  I-reset
                 </Button>
               </div>
             )}
@@ -1082,7 +1072,7 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
                   variant="outline"
                   className="px-8 py-3 text-lg"
                 >
-                  Reset
+                  I-reset
                 </Button>
               </div>
             )}
@@ -1090,7 +1080,7 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
             {/* Results */}
             <Card id="results-section" className="transition-all duration-500">
               <CardHeader>
-                <CardTitle>Calculation Result</CardTitle>
+                <CardTitle>Resulta ng Kalkulasyon</CardTitle>
               </CardHeader>
               <CardContent>
                 {result ? (
@@ -1104,33 +1094,33 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
                   ) : (
                     <div className="space-y-4">
                       <div className="bg-green-50 border border-green-200 rounded-lg p-4">
-                        <h3 className="font-semibold text-green-800 mb-2">Calculated Dose:</h3>
+                        <h3 className="font-semibold text-green-800 mb-2">Nakalkulang Dosis:</h3>
                         <div className="grid gap-2 text-sm">
                           {result.isSuppository ? (
                             <p className="text-lg font-bold text-green-700">
-                              <strong>Number of Suppositories:</strong> {result.suppositories} suppository
+                              <strong>Bilang ng Supositoryo:</strong> {result.suppositories} supositoryo
                             </p>
                           ) : (
                             <p className="text-lg font-bold text-green-700">
-                              <strong>Required Amount:</strong> {result.volume} ml
+                              <strong>Kinakailangang Dami:</strong> {result.volume} ml
                             </p>
                           )}
-                          <p><strong>Medication:</strong> {result.medication.name}</p>
-                          <p><strong>Child's Weight:</strong> {result.weight} kg</p>
-                          <p><strong>Frequency:</strong> {result.frequency}</p>
-                          <p><strong>Maximum Daily:</strong> {result.maxDailyDoses} doses</p>
+                          <p><strong>Gamot:</strong> {result.medication.name}</p>
+                          <p><strong>Timbang ng Bata:</strong> {result.weight} kg</p>
+                          <p><strong>Dalas:</strong> {result.frequency}</p>
+                          <p><strong>Pinakamataas na Pang-araw-araw:</strong> {result.maxDailyDoses} dosis</p>
                           {/* NSAIDs Warning for Ibuprofen and Diclofenac */}
                           {(result.medication.ingredient === 'Ibuprofen' || result.medication.ingredient === 'Diclofenac') && (
                             <div className="mt-2 p-2 bg-orange-50 border border-orange-200 rounded-lg">
                               <p className="text-orange-800 text-sm font-medium">
-                                Do not combine ibuprofen syrup and diclofenac suppositories at the same time; leave 8 hours between them
+                                Huwag pagsamahin ang ibuprofen syrup at diclofenac supositoryo nang sabay; magpahinga ng 8 oras sa pagitan nila
                               </p>
                             </div>
                           )}
                           {/* Developer Credit */}
                           <div className="mt-3 pt-3 border-t border-green-300">
                             <p className="text-xs text-gray-600 flex items-center justify-center gap-1">
-                              Developed by{' '}
+                              Binuo ni{' '}
                               <a 
                                 href="https://www.linkedin.com/in/saad-almodameg-%D8%B3%D8%B9%D8%AF-%D8%A7%D9%84%D9%85%D8%AF%D9%8A%D9%85%D9%8A%D8%BA-5a0a43308" 
                                 target="_blank" 
@@ -1164,7 +1154,7 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
                           }}
                           className="bg-yellow-400 hover:bg-yellow-500 text-black font-semibold px-6 py-2 rounded-lg shadow-md transition-colors duration-200">
                           <Info className="h-4 w-4 ml-2" />
-                          For FAQs and additional explanation, click here
+                          Para sa mga Madalas Itanong at karagdagang paliwanag, mag-click dito
                         </Button>
                       </div>
                       
@@ -1173,14 +1163,14 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
                         <Alert className="bg-orange-50 border-orange-200">
                           <AlertTriangle className="h-4 w-4 text-orange-600" />
                           <AlertDescription className="text-orange-800">
-                            <strong>Important Warning:</strong>
+                            <strong>Mahalagang Babala:</strong>
                             <ul className="list-disc mt-2 space-y-1" style={{listStylePosition: 'inside', direction: 'ltr', paddingLeft: '1.5rem'}}>
-                              <li>This calculator is for guidance only. Always consult a doctor before giving any medication to your child. Do not exceed the recommended dose and do not give medication for more than 3-5 days without medical consultation.</li>
+                              <li>Ang kalkulador na ito ay para sa gabay lamang. Palaging kumunsulta sa doktor bago magbigay ng anumang gamot sa inyong anak. Huwag lumampas sa inirerekomendang dosis at huwag magbigay ng gamot nang higit sa 3-5 araw nang walang konsultasyon sa doktor.</li>
                               {(() => {
                                 const ageValue = convertArabicToEnglish(age)
                                 const ageNum = parseFloat(ageValue)
-                                const ageInMonths = ageUnit === 'years' ? ageNum * 12 : ageNum
-                                return ageUnit === 'months' && ageInMonths === 1 && (
+                                const ageInMonths = ageUnit === 'taon' ? ageNum * 12 : ageNum
+                                return ageUnit === 'buwan' && ageInMonths === 1 && (
                                   <li>For infants under one month with fever, it's best not to give fever reducers and go to the hospital for examination.</li>
                                 )
                               })()}
@@ -1192,7 +1182,7 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
                   )
                 ) : (
                   <p className="text-gray-500 text-center py-8">
-                    Enter child's age and weight and select medication to calculate dose
+                    Ilagay ang edad at timbang ng bata at pumili ng gamot upang kalkulahin ang dosis
                   </p>
                 )}
               </CardContent>
@@ -1229,7 +1219,7 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
                             Popular Brand Names
                           </h4>
                           <div className="text-purple-800 text-sm mb-3">
-                            Available forms: <strong>suppositories, syrup, drops</strong>
+                            Available forms: <strong>suppositories, syrup, patak</strong>
                           </div>
                           
                           {/* Note about same concentration */}
@@ -1334,22 +1324,22 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
                               <div className="space-y-1.5 text-xs">
                                 <div className="flex justify-between border-b border-gray-200 pb-1">
                                   <span className="font-medium text-gray-700">Minimum Age:</span>
-                                  <span className="text-blue-700">2 months</span>
+                                  <span className="text-blue-700">2 buwan</span>
                                 </div>
                                 <div className="flex justify-between border-b border-gray-200 pb-1">
                                   <span className="font-medium text-gray-700">Duration of Effect:</span>
                                   <span className="text-blue-700">4-6 hours</span>
                                 </div>
                                 <div className="flex justify-between border-b border-gray-200 pb-1">
-                                  <span className="font-medium text-gray-700">Maximum Daily:</span>
-                                  <span className="text-blue-700">5 doses</span>
+                                  <span className="font-medium text-gray-700">Pinakamataas na Pang-araw-araw:</span>
+                                  <span className="text-blue-700">5 dosis</span>
                                 </div>
                                 <div className="flex justify-between border-b border-gray-200 pb-1">
                                   <span className="font-medium text-gray-700">Available Forms:</span>
                                   <span className="text-blue-700">Drops, Syrup, suppositories</span>
                                 </div>
                                 <div className="flex justify-between">
-                                  <span className="font-medium text-gray-700">Important Warning:</span>
+                                  <span className="font-medium text-gray-700">Mahalagang Babala:</span>
                                   <span className="text-blue-700">-</span>
                                 </div>
                               </div>
@@ -1362,22 +1352,22 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
                               <div className="space-y-1.5 text-xs">
                                 <div className="flex justify-between border-b border-gray-200 pb-1">
                                   <span className="font-medium text-gray-700">Minimum Age:</span>
-                                  <span className="text-red-700">6 months</span>
+                                  <span className="text-red-700">6 buwan</span>
                                 </div>
                                 <div className="flex justify-between border-b border-gray-200 pb-1">
                                   <span className="font-medium text-gray-700">Duration of Effect:</span>
                                   <span className="text-red-700">6-8 hours</span>
                                 </div>
                                 <div className="flex justify-between border-b border-gray-200 pb-1">
-                                  <span className="font-medium text-gray-700">Maximum Daily:</span>
-                                  <span className="text-red-700">3 doses</span>
+                                  <span className="font-medium text-gray-700">Pinakamataas na Pang-araw-araw:</span>
+                                  <span className="text-red-700">3 dosis</span>
                                 </div>
                                 <div className="flex justify-between border-b border-gray-200 pb-1">
                                   <span className="font-medium text-gray-700">Available Forms:</span>
                                   <span className="text-red-700">Mainly Syrup</span>
                                 </div>
                                 <div className="flex justify-between">
-                                  <span className="font-medium text-gray-700">Important Warning:</span>
+                                  <span className="font-medium text-gray-700">Mahalagang Babala:</span>
                                   <span className="text-red-700">Do not combine with Diclofenac</span>
                                 </div>
                               </div>
@@ -1397,15 +1387,15 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
                                   <span className="text-red-700">8-12 hours</span>
                                 </div>
                                 <div className="flex justify-between border-b border-gray-200 pb-1">
-                                  <span className="font-medium text-gray-700">Maximum Daily:</span>
-                                  <span className="text-red-700">2 doses</span>
+                                  <span className="font-medium text-gray-700">Pinakamataas na Pang-araw-araw:</span>
+                                  <span className="text-red-700">2 dosis</span>
                                 </div>
                                 <div className="flex justify-between border-b border-gray-200 pb-1">
                                   <span className="font-medium text-gray-700">Available Forms:</span>
-                                  <span className="text-red-700">Suppositories only</span>
+                                  <span className="text-red-700">Supositoryo only</span>
                                 </div>
                                 <div className="flex justify-between">
-                                  <span className="font-medium text-gray-700">Important Warning:</span>
+                                  <span className="font-medium text-gray-700">Mahalagang Babala:</span>
                                   <span className="text-red-700">Do not combine with Ibuprofen</span>
                                 </div>
                               </div>
@@ -1432,8 +1422,8 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
                               <tbody className="divide-y divide-gray-200">
                                 <tr>
                                   <td className="p-3 font-medium whitespace-nowrap">Minimum Age</td>
-                                  <td className="p-3 text-center text-blue-700 whitespace-nowrap">2 months</td>
-                                  <td className="p-3 text-center text-red-700 whitespace-nowrap">6 months</td>
+                                  <td className="p-3 text-center text-blue-700 whitespace-nowrap">2 buwan</td>
+                                  <td className="p-3 text-center text-red-700 whitespace-nowrap">6 buwan</td>
                                   <td className="p-3 text-center text-red-700 whitespace-nowrap">1 year</td>
                                 </tr>
                                 <tr className="bg-gray-25">
@@ -1444,15 +1434,15 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
                                 </tr>
                                 <tr>
                                   <td className="p-3 font-medium whitespace-nowrap">Maximum Daily Doses</td>
-                                  <td className="p-3 text-center text-blue-700 whitespace-nowrap">5 doses</td>
-                                  <td className="p-3 text-center text-red-700 whitespace-nowrap">3 doses</td>
-                                  <td className="p-3 text-center text-red-700 whitespace-nowrap">2 doses</td>
+                                  <td className="p-3 text-center text-blue-700 whitespace-nowrap">5 dosis</td>
+                                  <td className="p-3 text-center text-red-700 whitespace-nowrap">3 dosis</td>
+                                  <td className="p-3 text-center text-red-700 whitespace-nowrap">2 dosis</td>
                                 </tr>
                                 <tr className="bg-gray-25">
                                   <td className="p-3 font-medium whitespace-nowrap">Available Forms</td>
                                   <td className="p-3 text-center text-blue-700">Drops, Syrup, suppositories</td>
                                   <td className="p-3 text-center text-red-700 whitespace-nowrap">Mainly Syrup</td>
-                                  <td className="p-3 text-center text-red-700 whitespace-nowrap">Suppositories only</td>
+                                  <td className="p-3 text-center text-red-700 whitespace-nowrap">Supositoryo only</td>
                                 </tr>
                                 <tr>
                                   <td className="p-3 font-medium whitespace-nowrap">Important Warning</td>
@@ -1569,7 +1559,7 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
                         <div className="bg-teal-50 p-3 md:p-4 rounded-lg mr-0 md:mr-11">
                           <div className="text-teal-800 space-y-2">
                             <p>
-                              <strong className="text-blue-600">Paracetamol medications</strong> can be taken on an empty stomach.
+                              <strong className="text-blue-600">Mga gamot na Paracetamol</strong> can be taken on an empty stomach.
                             </p>
                             <p>
                               <strong className="text-red-600">Ibuprofen (Brufen) medications</strong> are preferably taken after food or a light meal.
@@ -1603,8 +1593,8 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
         </Tabs>
       </div>
 
-      {/* Image Enlargement Dialog */}
-      <Dialog open={!!enlargedImage} onOpenChange={() => setEnlargedImage(null)}>
+      {/* Image Palakihinment Dialog */}
+      <Dialog open={!!enlargedImage} onOpenChange={() => setPalakihindImage(null)}>
         <DialogContent className="max-w-3xl">
           <DialogHeader>
             <DialogTitle className="text-right">
@@ -1685,7 +1675,7 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
                   <h3 className="text-xl font-semibold">{enlargedImage.name}</h3>
                   <p className="text-gray-600">{enlargedImage.ingredient}</p>
                   <p className="text-gray-500">
-                    {enlargedImage.form === 'suppository' 
+                    {enlargedImage.form === 'supositoryo' 
                       ? `${enlargedImage.concentration}mg`
                       : `${enlargedImage.concentration}mg/${enlargedImage.volume}ml`
                     } {enlargedImage.form}
@@ -1709,7 +1699,7 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
           <div className="mb-4 p-4 bg-gray-50 rounded-lg border">
             <div className="space-y-2">
               <p className="text-base font-semibold text-gray-800 flex items-center justify-center gap-1">
-                Developed by{' '}
+                Binuo ni{' '}
                 <a 
                   href="https://www.linkedin.com/in/saad-almodameg-%D8%B3%D8%B9%D8%AF-%D8%A7%D9%84%D9%85%D8%AF%D9%8A%D9%85%D9%8A%D8%BA-5a0a43308" 
                   target="_blank" 
@@ -1727,15 +1717,15 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
                   <img src={linkedinLogo} alt="LinkedIn" className="h-4" />
                 </a>
               </p>
-              <p className="font-semibold text-gray-700">Fever Calc</p>
-              <div className="text-lg font-bold text-gray-800">© All Rights Reserved</div>
+              <p className="font-semibold text-gray-700">Kalkulador ng Lagnat</p>
+              <div className="text-lg font-bold text-gray-800">© Lahat ng Karapatan ay Nakalaan</div>
             </div>
           </div>
           
           {/* Contact Information */}
           <div className="border-t pt-4">
             <p className="mt-1 font-medium">
-              <span className="text-black">Contact: </span>
+              <span className="text-black">Makipag-ugnayan: </span>
               <span className="text-blue-600">fever.calc@gmail.com</span>
             </p>
           </div>
@@ -1763,7 +1753,7 @@ const DosageTimelineVisualizer = ({
     return (
       <div className="text-center py-8">
         <Timer className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-        <p className="text-gray-500 text-lg mb-2">لم يتم تسجيل أي doses بعد</p>
+        <p className="text-gray-500 text-lg mb-2">لم يتم تسجيل أي dosis بعد</p>
         <p className="text-gray-400 text-sm">
           استخدم زر "سجل الdose الآن" بعد حساب الdose لبدء التتبع
         </p>
@@ -1779,7 +1769,7 @@ const DosageTimelineVisualizer = ({
           const lastDose = getLastDose(medication.medicationId)
           const timeUntilNext = getTimeUntilNextDose(lastDose)
           const progress = getProgressPercentage(lastDose)
-          const dosesIn24h = getDosesInLast24Hours(medication.medicationId)
+          const dosisIn24h = getDosesInLast24Hours(medication.medicationId)
           const canTakeNext = timeUntilNext === 0
 
           return (
@@ -1839,7 +1829,7 @@ const DosageTimelineVisualizer = ({
                   </div>
                   
                   <div className="text-sm text-gray-600">
-                    Today's Doses: {dosesIn24h}
+                    Today's Doses: {dosisIn24h}
                   </div>
                   
                   {canTakeNext && (
@@ -1916,5 +1906,5 @@ const DosageTimelineVisualizer = ({
   )
 }
 
-export default AppEnglish
+export default AppPhilippines
 
