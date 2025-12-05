@@ -39,10 +39,16 @@ export const englishTranslations = {
   selectMedicationForm: 'Select medication form:',
   syrup: 'Syrup',
   drops: 'Drops',
+  suppositories: 'Suppositories',
   
   // Medication Type
   paracetamolMedications: 'Paracetamol medications',
   ibuprofenMedications: 'Ibuprofen medications',
+  paracetamolSuppositories: 'Paracetamol Suppositories',
+  diclofenacSuppositories: 'Diclofenac Suppositories',
+  forChildrenOver1Year: 'For children over 1 year',
+  diclofenacNote: 'For fever or pain that doesn\'t respond to paracetamol, your doctor may recommend a stronger fever reducer or pain reliever such as diclofenac suppositories',
+  diclofenacWarning: 'Diclofenac suppositories do not interact with paracetamol, but they belong to the same family as ibuprofen syrup. Do not take them at the same time and leave 8 hours between them',
   
   // Medication Cards
   concentration: 'Concentration',
@@ -50,6 +56,9 @@ export const englishTranslations = {
   months: 'months',
   years: 'years',
   andAbove: 'and above',
+  enlarge: 'Enlarge',
+  clickToEnlarge: 'Click to Enlarge',
+  dose: 'Dose',
   
   // Calculate Button
   calculate: 'Calculate',
