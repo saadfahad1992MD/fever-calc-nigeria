@@ -1032,8 +1032,7 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
                     </div>
                   </div>
                   
-                  {/* Diclofenac Suppositories Section - Only for children 1 year and above */}
-                  {(ageUnit === 'years' || (ageUnit === 'months' && parseInt(age) >= 12)) && (
+                  {/* Diclofenac Suppositories Section - Always show but disable for under 1 year */}
                   <div>
                     <div className="flex items-center gap-2 mb-2">
                       <div className="w-4 h-4 bg-green-500 rounded-full"></div>
@@ -1059,7 +1058,6 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
                       ))}
                     </div>
                   </div>
-                  )}
                 </>
               )}
             </div>
