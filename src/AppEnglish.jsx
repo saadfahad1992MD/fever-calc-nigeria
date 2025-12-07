@@ -14,7 +14,7 @@ import linkedinLogo from './assets/linkedin-logo.png'
 import './App.css'
 
 // Import country-specific medication data
-import { medicationsPhilippines } from './data/medicationsPhilippines.js'
+import { medicationsNigeria } from './data/medicationsNigeria.js'
 
 // Import medication images
 import adolSyrupImg from './assets/medications/adol_syrup.webp'
@@ -318,8 +318,8 @@ function AppEnglish({ onChangeLanguage, country = 'DEFAULT' }) {
   const [medicationType, setMedicationType] = useState('syrup') // 'syrup' or 'suppository'
 
   // Select medications based on country
-  const medicationsData = country === 'PH' ? medicationsPhilippines : medications
-  const suppositoriesData = country === 'PH' ? medicationsPhilippines.suppositories : suppositories
+  const medicationsData = medicationsNigeria
+  const suppositoriesData = medicationsNigeria.suppositories
 
   // Function to convert Arabic numerals to English numerals
   const convertArabicToEnglish = (str) => {
