@@ -10,6 +10,7 @@ import mbParacetamolImg from '../assets/medications/nigeria/mb_paracetamol.jpg'
 import emprofenImg from '../assets/medications/nigeria/emprofen.png'
 import mbIbuprofenImg from '../assets/medications/nigeria/mb_ibuprofen.png'
 import nurofenChildrenImg from '../assets/medications/nigeria/nurofen_children.jpeg'
+import calprofenImg from '../assets/medications/nigeria/calprofen.jpg'
 
 // Placeholder images for medications without photos and suppositories
 const paracetamolPlaceholder = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="200"%3E%3Crect fill="%234CAF50" width="200" height="200" rx="10"/%3E%3Ctext x="50%25" y="45%25" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="24" font-weight="bold" fill="white"%3EParacetamol%3C/text%3E%3Ctext x="50%25" y="65%25" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="16" fill="white"%3ENigeria%3C/text%3E%3C/svg%3E';
@@ -119,7 +120,7 @@ export const medicationsNigeria = {
       concentration: 100,
       volume: 5,
       form: 'syrup',
-      image: ibuprofenPlaceholder,
+      image: calprofenImg,
       ageRestriction: 'For children 6 months and above'
     }
   ],
