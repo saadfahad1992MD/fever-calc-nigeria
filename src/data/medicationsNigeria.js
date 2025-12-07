@@ -90,7 +90,7 @@ export const medicationsNigeria = {
       volume: 5,
       form: 'syrup',
       image: emprofenImg,
-      ageRestriction: 'For children 3 months and above'
+      ageRestriction: 'For children 6 months and above'
     },
     {
       id: 'mb_ibuprofen',
@@ -100,7 +100,7 @@ export const medicationsNigeria = {
       volume: 5,
       form: 'syrup',
       image: mbIbuprofenImg,
-      ageRestriction: 'For children 3 months and above'
+      ageRestriction: 'For children 6 months and above'
     },
     {
       id: 'nurofen_children',
@@ -110,7 +110,7 @@ export const medicationsNigeria = {
       volume: 5,
       form: 'syrup',
       image: nurofenChildrenImg,
-      ageRestriction: 'For children 3 months to 9 years'
+      ageRestriction: 'For children 6 months to 9 years'
     },
     {
       id: 'calprofen',
@@ -120,7 +120,7 @@ export const medicationsNigeria = {
       volume: 5,
       form: 'syrup',
       image: ibuprofenPlaceholder,
-      ageRestriction: 'For children 3 months and above'
+      ageRestriction: 'For children 6 months and above'
     }
   ],
   suppositories: {
