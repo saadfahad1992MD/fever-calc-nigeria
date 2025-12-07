@@ -1,7 +1,17 @@
 // Nigeria Pediatric Medications Database
 // Paracetamol and Ibuprofen medications commonly available in Nigeria
 
-// Placeholder images with medication-specific colors
+// Import actual product images
+import emzorParacetamolDropsImg from '../assets/medications/nigeria/emzor_paracetamol_drops.png'
+import emzorParacetamolSyrupImg from '../assets/medications/nigeria/emzor_paracetamol_syrup.png'
+import emcapParacetamolImg from '../assets/medications/nigeria/emcap_paracetamol.png'
+import panadolChildrenImg from '../assets/medications/nigeria/panadol_children.jpg'
+import mbParacetamolImg from '../assets/medications/nigeria/mb_paracetamol.jpg'
+import emprofenImg from '../assets/medications/nigeria/emprofen.png'
+import mbIbuprofenImg from '../assets/medications/nigeria/mb_ibuprofen.png'
+import nurofenChildrenImg from '../assets/medications/nigeria/nurofen_children.jpeg'
+
+// Placeholder images for medications without photos and suppositories
 const paracetamolPlaceholder = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="200"%3E%3Crect fill="%234CAF50" width="200" height="200" rx="10"/%3E%3Ctext x="50%25" y="45%25" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="24" font-weight="bold" fill="white"%3EParacetamol%3C/text%3E%3Ctext x="50%25" y="65%25" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="16" fill="white"%3ENigeria%3C/text%3E%3C/svg%3E';
 
 const ibuprofenPlaceholder = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="200"%3E%3Crect fill="%232196F3" width="200" height="200" rx="10"/%3E%3Ctext x="50%25" y="45%25" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="24" font-weight="bold" fill="white"%3EIbuprofen%3C/text%3E%3Ctext x="50%25" y="65%25" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="16" fill="white"%3ENigeria%3C/text%3E%3C/svg%3E';
@@ -17,7 +27,7 @@ export const medicationsNigeria = {
       concentration: 100,
       volume: 1,
       form: 'drops',
-      image: paracetamolPlaceholder,
+      image: emzorParacetamolDropsImg,
       ageRestriction: 'For infants 0-12 months'
     },
     {
@@ -27,7 +37,7 @@ export const medicationsNigeria = {
       concentration: 120,
       volume: 5,
       form: 'syrup',
-      image: paracetamolPlaceholder,
+      image: emzorParacetamolSyrupImg,
       ageRestriction: ''
     },
     {
@@ -37,7 +47,7 @@ export const medicationsNigeria = {
       concentration: 120,
       volume: 5,
       form: 'syrup',
-      image: paracetamolPlaceholder,
+      image: emcapParacetamolImg,
       ageRestriction: ''
     },
     {
@@ -47,7 +57,7 @@ export const medicationsNigeria = {
       concentration: 120,
       volume: 5,
       form: 'syrup',
-      image: paracetamolPlaceholder,
+      image: panadolChildrenImg,
       ageRestriction: ''
     },
     {
@@ -57,7 +67,7 @@ export const medicationsNigeria = {
       concentration: 120,
       volume: 5,
       form: 'syrup',
-      image: paracetamolPlaceholder,
+      image: mbParacetamolImg,
       ageRestriction: ''
     },
     {
@@ -79,7 +89,7 @@ export const medicationsNigeria = {
       concentration: 100,
       volume: 5,
       form: 'syrup',
-      image: ibuprofenPlaceholder,
+      image: emprofenImg,
       ageRestriction: 'For children 3 months and above'
     },
     {
@@ -89,7 +99,7 @@ export const medicationsNigeria = {
       concentration: 100,
       volume: 5,
       form: 'syrup',
-      image: ibuprofenPlaceholder,
+      image: mbIbuprofenImg,
       ageRestriction: 'For children 3 months and above'
     },
     {
@@ -99,7 +109,7 @@ export const medicationsNigeria = {
       concentration: 100,
       volume: 5,
       form: 'syrup',
-      image: ibuprofenPlaceholder,
+      image: nurofenChildrenImg,
       ageRestriction: 'For children 3 months to 9 years'
     },
     {
